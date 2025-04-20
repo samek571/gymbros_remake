@@ -1,0 +1,30 @@
+package com.samuel.gymtracker.model;
+
+public enum MuscleGroup {
+    ABDOMINALS,
+    ABDUCTORS,
+    ADDUCTORS,
+    BICEPS,
+    CALVES,
+    CARDIO,
+    CORE,
+    FOREARMS,
+    FRONT_DELT,
+    GLUTES,
+    HAMSTRINGS,
+    LATS,
+    LOWER_BACK,
+    LOWER_CHEST,
+    MIDDLE_DELT,
+    NECK,
+    OBLIQUES,
+    QUADRICEPS,
+    REAR_DELT,
+    ROTATOR_CUFF,
+    TRAPS,
+    TRICEPS,
+    UPPER_BACK,
+    UPPER_CHEST,
+    OTHER,
+
+}
