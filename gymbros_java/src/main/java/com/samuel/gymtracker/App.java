@@ -1,12 +1,15 @@
 package com.samuel.gymtracker;
 
 import com.samuel.gymtracker.model.ExerciseCatalog;
-import com.samuel.gymtracker.service.CustomExerciseManager;
+import com.samuel.gymtracker.service.SettingsMenu;
+import com.samuel.gymtracker.service.ViewWorkoutHistory;
 import com.samuel.gymtracker.service.WorkoutSessionManager;
+
 import java.nio.file.Path;
 import java.util.Scanner;
 
 public class App {
+
     private static final Scanner scanner = new Scanner(System.in);
     public static final Path custom_exercises_json = Path.of("src/main/resources/custom_exercises.json");
     public static void main(String[] args) throws Exception {
@@ -18,27 +21,28 @@ public class App {
         boolean running = true;
         while (running) {
             System.out.println("\n=== Gym Tracker ===");
-            System.out.println("1. List exercises");
-            System.out.println("2. Add custom exercise");
-            System.out.println("3. Delete custom exercise");
-            System.out.println("4. Start workout session");
-            System.out.println("5. Exit");
+            System.out.println("[Enter] Start workout");
+            System.out.println("1. View workout history");
+            System.out.println("2. Settings");
+            System.out.println("3. Exit");
 
-            System.out.print("Choose an option: ");
-            int choice = Integer.parseInt(scanner.nextLine());
+            System.out.print("Where to go: ");
+            String input = scanner.nextLine();
+            if (input.isBlank()) input = "0";
+
+            int choice;
+            try {
+                choice = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input, please try again.");
+                continue;
+            }
 
             switch (choice) {
-                case 1 -> {
-                    for (var exercise : catalog.all()) {
-                        System.out.println("- " + exercise.getName());
-                    }
-                }
-
-                case 2 -> CustomExerciseManager.addCustomExercise(catalog);
-                case 3 -> CustomExerciseManager.deleteCustomExercise(catalog, custom_exercises_json);
-                case 4 -> WorkoutSessionManager.startSession(catalog);
-                case 5 -> running = false;
-
+                case 0 -> WorkoutSessionManager.startSession(catalog);
+                case 1 -> ViewWorkoutHistory.viewWorkoutHistory();
+                case 2 -> SettingsMenu.start(catalog);
+                case 3 -> running = false;
                 default -> System.out.println("Try again...");
             }
         }

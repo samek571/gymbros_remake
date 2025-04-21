@@ -35,4 +35,20 @@ public final class WorkoutRepository {
             _mapper.writerWithDefaultPrettyPrinter().writeValue(out, history.getSessions());
         }
     }
+    public static void saveSession(WorkoutSession session) {
+        try {
+            Path file = Path.of("src/main/resources/workout_history.json");
+            WorkoutHistory history;
+            if (Files.exists(file)) {
+                history = loadHistory(file);
+            } else {
+                history = new WorkoutHistory();
+            }
+            history.addSession(session);
+            saveHistory(file, history);
+        } catch (IOException e) {
+            System.out.println("Error saving: " + e.getMessage());
+        }
+    }
+
 }

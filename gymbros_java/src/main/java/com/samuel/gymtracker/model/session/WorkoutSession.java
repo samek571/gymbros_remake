@@ -3,6 +3,7 @@ package com.samuel.gymtracker.model.session;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -45,6 +46,9 @@ public final class WorkoutSession {
                 .sum();
     }
 
+    public List<SessionEntry> getEntries() {
+        return Collections.unmodifiableList(entries);
+    }
 
     public Instant getStartTime() {
         return startTime;
