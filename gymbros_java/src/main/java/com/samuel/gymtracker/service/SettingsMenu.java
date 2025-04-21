@@ -16,21 +16,19 @@ public final class SettingsMenu {
             System.out.println("2. Add custom exercise");
             System.out.println("3. Delete custom exercise");
             System.out.println("4. View muscle progress");
-            System.out.println("5. Back to main menu");
+            System.out.println("5. List exercises with given muscle");
+            System.out.println("6. Back to main menu");
 
             System.out.print("Choose an option: ");
             String input = scanner.nextLine();
 
             switch (input) {
-                case "1" -> {
-                    for (var exercise : catalog.all()) {
-                        System.out.println("- " + exercise.getName());
-                    }
-                }
+                case "1" -> ExerciseLister.listAllExercises(catalog);
                 case "2" -> CustomExerciseManager.addCustomExercise(catalog);
                 case "3" -> CustomExerciseManager.deleteCustomExercise(catalog, App.custom_exercises_json);
                 case "4" -> ViewMuscleProgress.display();
-                case "5" -> inSettings = false;
+                case "5" -> ExerciseLister.listExercisesForMuscle(catalog);
+                case "6" -> inSettings = false;
                 default -> System.out.println("Invalid input. Try again.");
             }
         }
