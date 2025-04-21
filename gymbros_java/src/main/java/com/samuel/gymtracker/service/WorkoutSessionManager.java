@@ -52,6 +52,7 @@ public final class WorkoutSessionManager {
                     System.out.println("Duration: " + session.getDuration());
                     System.out.println("XP earned: " + session.getTotalXp());
                     WorkoutRepository.saveSession(session);
+                    MuscleTracker.updateProgress(session);
                     sessionRunning = false;
                 }
                 case "abort" -> {

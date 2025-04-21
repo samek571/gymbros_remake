@@ -43,8 +43,8 @@ public final class Exercise {
 
 
     public String getName() { return name; }
-    //public Set<MuscleGroup> getPrimary() { return primaryMuscles; }
-    //public Set<MuscleGroup> getSecondary() { return secondaryMuscles; }
+    public Set<MuscleGroup> getPrimary() { return primaryMuscles; }
+    public Set<MuscleGroup> getSecondary() { return secondaryMuscles; }
     public double getRepsCoeff() { return repsCoeff; }
     public double getWeightCoeff() { return weightCoeff; }
     public double getTimeCoeff() { return timeCoeff; }
