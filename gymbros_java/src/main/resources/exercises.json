@@ -4,7 +4,7 @@
     "primary": ["UPPER_CHEST", "TRICEPS"],
     "secondary": ["FRONT_DELT"],
     "repsCoeff": 10.0,
-    "kgCoeff": 1.2,
+    "WeightCoeff": 1.2,
     "timeCoeff": 0.0
   },
   {
@@ -12,7 +12,7 @@
     "primary": ["QUADRICEPS", "GLUTES"],
     "secondary": ["HAMSTRINGS", "LOWER_BACK"],
     "repsCoeff": 12.0,
-    "kgCoeff": 1.0,
+    "WeightCoeff": 1.0,
     "timeCoeff": 0.0
   },
   {
@@ -20,7 +20,7 @@
     "primary": ["LOWER_BACK", "GLUTES", "HAMSTRINGS"],
     "secondary": ["TRAPS", "FOREARMS"],
     "repsCoeff": 15.0,
-    "kgCoeff": 1.5,
+    "WeightCoeff": 1.5,
     "timeCoeff": 0.0
   },
   {
@@ -28,7 +28,7 @@
     "primary": ["LATS", "BICEPS"],
     "secondary": ["UPPER_BACK"],
     "repsCoeff": 20.0,
-    "kgCoeff": 0.5,
+    "WeightCoeff": 0.5,
     "timeCoeff": 0.0
   },
   {
@@ -36,7 +36,7 @@
     "primary": ["LATS", "UPPER_BACK"],
     "secondary": ["REAR_DELT"],
     "repsCoeff": 15.0,
-    "kgCoeff": 1.0,
+    "WeightCoeff": 1.0,
     "timeCoeff": 0.0
   },
   {
@@ -44,7 +44,7 @@
     "primary": ["FRONT_DELT", "MIDDLE_DELT"],
     "secondary": ["TRICEPS"],
     "repsCoeff": 12.0,
-    "kgCoeff": 1.0,
+    "WeightCoeff": 1.0,
     "timeCoeff": 0.0
   },
   {
@@ -52,7 +52,7 @@
     "primary": ["MIDDLE_DELT"],
     "secondary": [],
     "repsCoeff": 25.0,
-    "kgCoeff": 0.3,
+    "WeightCoeff": 0.3,
     "timeCoeff": 0.0
   },
   {
@@ -60,7 +60,7 @@
     "primary": ["BICEPS"],
     "secondary": ["FOREARMS"],
     "repsCoeff": 15.0,
-    "kgCoeff": 0.8,
+    "WeightCoeff": 0.8,
     "timeCoeff": 0.0
   },
   {
@@ -68,7 +68,7 @@
     "primary": ["TRICEPS"],
     "secondary": ["LOWER_CHEST"],
     "repsCoeff": 15.0,
-    "kgCoeff": 0.7,
+    "WeightCoeff": 0.7,
     "timeCoeff": 0.0
   },
   {
@@ -76,7 +76,7 @@
     "primary": ["QUADRICEPS"],
     "secondary": ["GLUTES", "HAMSTRINGS"],
     "repsCoeff": 10.0,
-    "kgCoeff": 1.2,
+    "WeightCoeff": 1.2,
     "timeCoeff": 0.0
   },
   {
@@ -84,7 +84,7 @@
     "primary": ["CALVES"],
     "secondary": [],
     "repsCoeff": 20.0,
-    "kgCoeff": 0.4,
+    "WeightCoeff": 0.4,
     "timeCoeff": 0.0
   },
   {
@@ -92,7 +92,7 @@
     "primary": ["ABDOMINALS"],
     "secondary": ["OBLIQUES"],
     "repsCoeff": 30.0,
-    "kgCoeff": 0.0,
+    "WeightCoeff": 0.0,
     "timeCoeff": 0.5
   },
   {
@@ -100,7 +100,7 @@
     "primary": ["OBLIQUES"],
     "secondary": ["ABDOMINALS"],
     "repsCoeff": 25.0,
-    "kgCoeff": 0.0,
+    "WeightCoeff": 0.0,
     "timeCoeff": 0.7
   },
   {
@@ -108,7 +108,7 @@
     "primary": ["CORE"],
     "secondary": ["LOWER_BACK"],
     "repsCoeff": 0.0,
-    "kgCoeff": 0.0,
+    "WeightCoeff": 0.0,
     "timeCoeff": 2.5
   },
   {
@@ -116,7 +116,7 @@
     "primary": ["NECK"],
     "secondary": [],
     "repsCoeff": 15.0,
-    "kgCoeff": 0.2,
+    "WeightCoeff": 0.2,
     "timeCoeff": 0.0
   },
   {
@@ -124,7 +124,7 @@
     "primary": ["GLUTES"],
     "secondary": ["HAMSTRINGS"],
     "repsCoeff": 15.0,
-    "kgCoeff": 1.0,
+    "WeightCoeff": 1.0,
     "timeCoeff": 0.0
   },
   {
@@ -132,7 +132,7 @@
     "primary": ["REAR_DELT", "TRAPS"],
     "secondary": ["ROTATOR_CUFF"],
     "repsCoeff": 20.0,
-    "kgCoeff": 0.6,
+    "WeightCoeff": 0.6,
     "timeCoeff": 0.0
   },
   {
@@ -140,7 +140,7 @@
     "primary": ["CARDIO"],
     "secondary": ["LATS", "CORE"],
     "repsCoeff": 0.0,
-    "kgCoeff": 0.0,
+    "WeightCoeff": 0.0,
     "timeCoeff": 2.0
   },
   {
@@ -148,7 +148,7 @@
     "primary": ["ADDUCTORS"],
     "secondary": [],
     "repsCoeff": 15.0,
-    "kgCoeff": 0.9,
+    "WeightCoeff": 0.9,
     "timeCoeff": 0.0
   }
 ]
