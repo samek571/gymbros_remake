@@ -23,7 +23,7 @@ public class App {
             System.out.println("\n=== Gym Tracker ===");
             System.out.println("[Enter] Start workout");
             System.out.println("1. View workout history");
-            System.out.println("2. Settings");
+            System.out.println("2. Settings & more");
             System.out.println("3. Exit");
 
             System.out.print("Where to go: ");

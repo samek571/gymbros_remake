@@ -1,0 +1,19 @@
+[ {
+  "startTime" : 1746127607.359034222,
+  "entries" : [ {
+    "exercise" : {
+      "name" : "Bench Press",
+      "primary" : [ "TRICEPS", "UPPER_CHEST" ],
+      "secondary" : [ "FRONT_DELT" ],
+      "repsCoeff" : 10.0,
+      "weightCoeff" : 1.2,
+      "timeCoeff" : 0.0
+    },
+    "reps" : 44,
+    "weight" : 34.0,
+    "seconds" : 43,
+    "xpEarned" : 480.8
+  } ],
+  "duration" : 26.437589633,
+  "totalXp" : 480.8
+} ]
