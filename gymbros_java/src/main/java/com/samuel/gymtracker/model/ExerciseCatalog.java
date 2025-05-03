@@ -2,40 +2,45 @@ package com.samuel.gymtracker.model;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+import java.util.concurrent.ConcurrentHashMap;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 
+
+/**
+ * catalog of exercises + built in and user custom made exercises
+ * loading/saving from JSON, lookup by name, duplication detection
+ * allows lookup and management of {@link Exercise} instances by name
+ */
 public final class ExerciseCatalog {
-    private static final ObjectMapper _mapper = new ObjectMapper();
-    private final Map<String, Exercise> builtIns = new ConcurrentHashMap<>();
-    private final Map<String, Exercise> customs  = new ConcurrentHashMap<>();
+    /**
+     * Private constructor to prevent instantiation
+     */
+    public ExerciseCatalog() { }
 
+
+    private static final ObjectMapper _mapper = new ObjectMapper();
+    private final Map<String, Exercise> _builtIns = new ConcurrentHashMap<>();
+    private final Map<String, Exercise> _customs  = new ConcurrentHashMap<>();
+
+
+    /**
+     * loads built in ex from a JSON file
+     * @param resourcePath classpath to the built in JSON resource
+     * @throws IOException if resource not fount or fucked
+     */
     public void loadBuiltInsFromClasspath(String resourcePath) throws IOException {
         try (InputStream in = ExerciseCatalog.class.getResourceAsStream(resourcePath)) {
             if (in == null) throw new IOException("Resource not found: " + resourcePath);
-            loadMap(in, builtIns);
+            _loadMapHelper(in, _builtIns);
         }
     }
 
-    public void loadCustomFromFile(Path file) throws IOException {
-        if (!Files.exists(file)) return;
-        try (InputStream in = Files.newInputStream(file)) {
-            var list = _mapper.readValue(in, new TypeReference<List<Exercise>>() {});
-            for (Exercise ex : list) {
-                var key = ex.getName().toLowerCase();
-                customs.put(key, ex);
-            }
-        }
-    }
-
-
-    private static void loadMap(InputStream in, Map<String, Exercise> target) throws IOException {
+    private static void _loadMapHelper(InputStream in, Map<String, Exercise> target) throws IOException {
         var list = _mapper.readValue(in, new TypeReference<List<Exercise>>() {});
         for (Exercise ex : list) {
             var key = ex.getName().toLowerCase();
@@ -43,30 +48,65 @@ public final class ExerciseCatalog {
         }
     }
 
+    /**
+     * loads custom ex from a JSON file on fs
+     * @param file path to the custom JSON file
+     * @throws IOException if file is fucked or not fount
+     */
+    public void loadCustomFromFile(Path file) throws IOException {
+        if (!Files.exists(file)) return;
+        try (InputStream in = Files.newInputStream(file)) {
+            var list = _mapper.readValue(in, new TypeReference<List<Exercise>>() {});
+            for (Exercise ex : list) {
+                var key = ex.getName().toLowerCase();
+                _customs.put(key, ex);
+            }
+        }
+    }
+
+    /**
+     * adds new custom ex if not existing
+     * @param exercise the exercise to add
+     * @throws IllegalArgumentException if name already exists
+     */
     public void addCustomExercise(Exercise exercise) {
         var key = exercise.getName().toLowerCase();
-        if (builtIns.containsKey(key) || customs.putIfAbsent(key, exercise) != null) {
+        if (_builtIns.containsKey(key) || _customs.putIfAbsent(key, exercise) != null) {
             throw new IllegalArgumentException("Exercise already exists: " + exercise.getName());
         }
     }
 
-    public boolean removeCustomExercise(String name) {
 
-        return customs.remove(name.toLowerCase()) != null;
+    /**
+     * removes custom exercise characterized by name
+     * @param name case-insensitive name
+     * @return true if removed, else false
+     */
+    public boolean removeCustomExercise(String name) {
+        return _customs.remove(name.toLowerCase()) != null;
     }
 
+    /**
+     * saves all custom exercises to a file, overwriting existing content
+     * @param file output path
+     * @throws IOException if write fails
+     */
     public void saveCustomToFile(Path file) throws IOException {
         Files.createDirectories(file.getParent());
-        List<Exercise> list = new ArrayList<>(customs.values());
+        List<Exercise> list = new ArrayList<>(_customs.values());
         try (OutputStream out = Files.newOutputStream(file)) {
             _mapper.writerWithDefaultPrettyPrinter().writeValue(out, list);
         }
     }
 
-    // Save ONE new exercise (append-like behavior logically)
+    /**
+     * appending single new custom exercise to existing file
+     * @param file path to custom JSON
+     * @param exercise exercise to save
+     * @throws IOException if file or write fails
+     */
     public void saveCustomExercise(Path file, Exercise exercise) throws IOException {
         Files.createDirectories(file.getParent());
-
         List<Exercise> allExercises;
 
         if (Files.exists(file)) {
@@ -88,20 +128,24 @@ public final class ExerciseCatalog {
         }
     }
 
-
+    /**
+     * searches exercise by name, in both custom also built in
+     * @param name case-insensitive name
+     * @return the matching ex, or null if not fount
+     */
     public Exercise get(String name) {
         var key = name.toLowerCase();
-        Exercise ex = customs.get(key);
-        return (ex != null) ? ex : builtIns.get(key);
+        Exercise ex = _customs.get(key);
+        return (ex != null) ? ex : _builtIns.get(key);
     }
 
+    /**
+     * returns merged view of all exs
+     * @return unmodifiable set of all exs
+     */
     public Set<Exercise> all() {
-        Map<String, Exercise> merged = new HashMap<>(builtIns);
-        merged.putAll(customs);
+        Map<String, Exercise> merged = new HashMap<>(_builtIns);
+        merged.putAll(_customs);
         return Collections.unmodifiableSet(new HashSet<>(merged.values()));
-    }
-
-    public boolean isBuiltIn(String name) {
-        return builtIns.containsKey(name.toLowerCase());
     }
 }

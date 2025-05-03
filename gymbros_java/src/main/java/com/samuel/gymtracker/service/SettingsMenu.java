@@ -3,13 +3,30 @@ package com.samuel.gymtracker.service;
 import com.samuel.gymtracker.model.ExerciseCatalog;
 import com.samuel.gymtracker.App;
 import com.samuel.gymtracker.templates.TemplateSandboxManager;
-
 import java.util.Scanner;
 
+
+/**
+ * settings UI logic for users, that can:
+ * - manage exercises
+ * - view muscle usage statistics
+ * - use workout templates
+
+ * static-only utility class
+ */
 public final class SettingsMenu {
+    /**
+     * private constructor preventing instantiation
+     */
     private SettingsMenu() {}
 
+
     private static final Scanner scanner = new Scanner(System.in);
+
+    /**
+     * starts the settings menu loop and allows user to select multiple options
+     * @param catalog current exercise catalog used for lookup and manipulation.
+     */
     public static void start(ExerciseCatalog catalog) {
         boolean inSettings = true;
         while (inSettings) {

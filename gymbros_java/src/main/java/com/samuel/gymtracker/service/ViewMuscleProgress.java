@@ -2,17 +2,30 @@ package com.samuel.gymtracker.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
+
+/**
+ * util class that displays stored muscle training progress
+ * data from JSON {@code src/main/resources/muscle_progress.json}
+ */
 public final class ViewMuscleProgress {
+    /**
+     * private constructor preventing instantiation
+     */
     private ViewMuscleProgress() {}
 
     private static final Path _file = Path.of("src/main/resources/muscle_progress.json");
     private static final ObjectMapper _mapper = new ObjectMapper().findAndRegisterModules();
+
+
+    /**
+     * displays some summary of muscle training progress sorted by activity
+     * reps, seconds, number of exss, logged per muscle group
+     */
     public static void display() {
         try {
             if (!Files.exists(_file)) {

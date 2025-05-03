@@ -4,17 +4,38 @@ import com.samuel.gymtracker.model.ExerciseCatalog;
 import com.samuel.gymtracker.service.SettingsMenu;
 import com.samuel.gymtracker.service.ViewWorkoutHistory;
 import com.samuel.gymtracker.service.WorkoutSessionManager;
-
 import java.nio.file.Path;
 import java.util.Scanner;
 
+/**
+ * THE APPLICATION - entry point for the GymBros app
+ * init and konsole prompt - starting workout, viewing workout history, settings customization and to analyze
+ */
 public class App {
+    /**
+     * Private constructor to prevent instantiation
+     */
+    private App() {}
+
+
 
     private static final Scanner scanner = new Scanner(System.in);
-    public static final Path custom_exercises_json = Path.of("src/main/resources/custom_exercises.json");
-    public static void main(String[] args) throws Exception {
-        ExerciseCatalog catalog = new ExerciseCatalog();
 
+    /**
+     * Path to JSON storing user defined custom exs
+     */
+    public static final Path custom_exercises_json = Path.of("src/main/resources/custom_exercises.json");
+
+    /**
+     * innit and run of the main menu loop app
+     * loading built-ins and custom exercises and waits for user input for further direction
+
+     * @param args Command-line arguments (not used)
+     * @throws Exception if loading exercises || resources fail
+     */
+    public static void main(String[] args) throws Exception {
+
+        ExerciseCatalog catalog = new ExerciseCatalog();
         catalog.loadBuiltInsFromClasspath("/exercises.json");
         catalog.loadCustomFromFile(custom_exercises_json);
 

@@ -3,7 +3,6 @@ package com.samuel.gymtracker.service;
 import com.samuel.gymtracker.model.Exercise;
 import com.samuel.gymtracker.model.ExerciseCatalog;
 import com.samuel.gymtracker.model.MuscleGroup;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
@@ -12,11 +11,27 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+
+/**
+ * provides CLI utilities to manage user defined exs
+ * includes options to create and delete ex
+ */
 public final class CustomExerciseManager {
+    /**
+     * private constructor preventing instantiation
+     */
     private CustomExerciseManager() {}
+
 
     private static final Scanner scanner = new Scanner(System.in);
 
+
+    /**
+     * deletes custom exercise by name
+     * saves updated catalog to the file path
+     * @param catalog catalog to modify
+     * @param savePath file path where the updated catalog will be saved
+     */
     public static void deleteCustomExercise(ExerciseCatalog catalog, Path savePath) {
         try {
             System.out.print("enter the name of the custom exercise to delete: ");
@@ -37,6 +52,10 @@ public final class CustomExerciseManager {
         }
     }
 
+    /**
+     * prompts user to enter data for new exercise, then saves it to the catalog and disk
+     * @param catalog ex catalog to insert new exercise there
+     */
     public static void addCustomExercise(ExerciseCatalog catalog) {
         try {
             System.out.print("enter exercise name: ");
@@ -64,7 +83,13 @@ public final class CustomExerciseManager {
         }
     }
 
-    //public for my internal testing purpose
+    /**
+     * parses set of muscle group names from input for primary muscles
+     * throws if no valid muscles are provided
+     *
+     * @param input raw user input string
+     * @return set of primary muscle groups
+     */
     public static Set<MuscleGroup> parsePrimaryMuscles(String input) {
         Set<MuscleGroup> muscles = Arrays.stream(input.split(" "))
                 .map(String::trim)
@@ -72,13 +97,18 @@ public final class CustomExerciseManager {
                 .map(s -> MuscleGroup.valueOf(s.toUpperCase()))
                 .collect(Collectors.toSet());
 
-        if (muscles.isEmpty()) {
-            throw new IllegalArgumentException("at least one primary muscle is being targeted... fix this shit");
-        }
+        if (muscles.isEmpty()) {throw new IllegalArgumentException("at least one primary muscle is being targeted... fix this shitty input");}
 
         return muscles;
     }
 
+
+    /**
+     * parses a set of optional secondary muscle groups from input
+     * invalid names are skipped
+     * @param input raw user input string
+     * @return set of secondary muscle groups
+     */
     public static Set<MuscleGroup> parseSecondaryMuscles(String input) {
         return Arrays.stream(input.split(" "))
                 .map(String::trim)
@@ -88,11 +118,15 @@ public final class CustomExerciseManager {
                 .collect(Collectors.toSet());
     }
 
+
+    /**
+     * attempts to safely resolve muscle group enum from string
+     * returns null if parsing fails
+     * @param name muscle name string
+     * @return corresponding MuscleGroup or null
+     */
     private static MuscleGroup safeMuscleGroup(String name) {
-        try {
-            return MuscleGroup.valueOf(name.toUpperCase());
-        } catch (IllegalArgumentException ex) {
-            return null;
-        }
+        try {return MuscleGroup.valueOf(name.toUpperCase());}
+        catch (IllegalArgumentException ex) {return null;}
     }
 }

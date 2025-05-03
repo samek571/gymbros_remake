@@ -4,14 +4,23 @@ import com.samuel.gymtracker.model.ExerciseCatalog;
 import com.samuel.gymtracker.model.session.SessionEntry;
 import com.samuel.gymtracker.model.session.WorkoutSession;
 import com.samuel.gymtracker.util.ConsoleUtils;
-
 import java.util.Scanner;
 
-// I think everything is pretty much self explanatory here
+
+
+/**
+ * manages lifecycle of a workout session
+ * handles user interactions during the session thats logging, finishing or aborting the session and saving sesh data
+ */
 public final class WorkoutSessionManager {
     private WorkoutSessionManager() {}
-
     private static final Scanner scanner = new Scanner(System.in);
+
+    /**
+     * starts an interactive workout session endless iter
+     * allows logging individual ex, finish and abort
+     * @param catalog exercise catalog used to look up ex metadata
+     */
     public static void startSession(ExerciseCatalog catalog) {
         WorkoutSession session = new WorkoutSession();
         System.out.println("Workout started at " + session.getStartTime());
@@ -67,6 +76,12 @@ public final class WorkoutSessionManager {
         }
     }
 
+
+    /**
+     * displays a real-time snapshot of workout sesh, time and entries
+     * @param session current workout session
+     * @param startTime start timestamp to calculate elapsed time
+     */
     private static void refreshTime(WorkoutSession session, long startTime) {
         ConsoleUtils.clearConsole();
         long secondsTotal = (System.currentTimeMillis() - startTime) / 1000;
@@ -91,7 +106,14 @@ public final class WorkoutSessionManager {
         System.out.println("[Commands] log / finish / abort");
     }
     
-    //this is so weight and reps can work under one method due to int vs float
+    /**
+     * utility method to safely parse user input, seconds are int but weight is float or something
+     * @param _input str input to parse
+     * @param parser function converting str to target type
+     * @param defaultValue fallback value if parsing fails
+     * @param <T> type of the new value
+     * @return parsed value or default
+     */
     private static <T> T _parser(String _input, Parser<T> parser, T defaultValue) {
         if (_input.isBlank()) return defaultValue;
         try {
@@ -100,6 +122,11 @@ public final class WorkoutSessionManager {
             return defaultValue;
         }
     }
+
+    /**
+     * functional interface for generic parsing
+     * @param <T> Type of the parsed result.
+     */
     @FunctionalInterface
     private interface Parser<T> {
         T parse(String s) throws Exception;

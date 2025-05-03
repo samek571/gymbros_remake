@@ -6,9 +6,26 @@ import com.samuel.gymtracker.model.session.WorkoutSession;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+
+/**
+ * utility class providing functionality to view users workout history.
+ * Loads data from {@code src/main/resources/workout_history.json} and prints structured summary of all completed workout sessions, XP and details
+ * This class is not meant to be instantiated
+ */
 public final class ViewWorkoutHistory {
+    /**
+     * private constructor preventing instantiation
+     */
     private ViewWorkoutHistory() {}
 
+
+    /**
+     * reads workout history from JSON and prints each session in human-readable format, session includes: Start time, duration, xp, list of individual ex entries
+     * <p>
+     * if history file does not exist or empty - warning message
+     * exceptions during loading or parsing are caught and signalized
+     * </p>
+     */
     public static void viewWorkoutHistory() {
         try {
             Path historyFile = Path.of("src/main/resources/workout_history.json");
