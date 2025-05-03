@@ -1,8 +1,10 @@
 package com.samuel.gymtracker.service;
+
 import com.samuel.gymtracker.model.MuscleGroup;
 import org.junit.jupiter.api.Test;
 import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
+
 
 class CustomExerciseManagerTest {
 

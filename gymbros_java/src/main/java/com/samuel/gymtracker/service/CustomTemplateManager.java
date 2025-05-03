@@ -82,9 +82,10 @@ public final class CustomTemplateManager {
         System.out.println("Enter exercise names for the template. Press ENTER to finish.");
         while (true) {
             System.out.print("Exercise name: ");
+            if (!scanner.hasNextLine()) break;
+
             String exName = scanner.nextLine().trim();
-            if (exName.equalsIgnoreCase("")) break;
-            if (exName.isEmpty()) continue;
+            if (exName.equalsIgnoreCase("done") || exName.isEmpty()) break;
 
             Exercise ex = catalog.get(exName);
             if (ex == null) {
