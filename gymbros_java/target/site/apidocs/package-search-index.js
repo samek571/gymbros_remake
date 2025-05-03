@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.samuel.gymtracker"},{"l":"com.samuel.gymtracker.model"},{"l":"com.samuel.gymtracker.model.session"},{"l":"com.samuel.gymtracker.service"},{"l":"com.samuel.gymtracker.templates"},{"l":"com.samuel.gymtracker.util"}];updateSearchResults();
