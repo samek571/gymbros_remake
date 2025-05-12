@@ -18,7 +18,9 @@ import java.util.List;
  */
 public final class WorkoutRepository {
     private WorkoutRepository() {}
-    private static final ObjectMapper _mapper = new ObjectMapper().findAndRegisterModules();
+    private static final ObjectMapper _mapper = new ObjectMapper()
+            .configure(com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+            .findAndRegisterModules();
 
 
     /**
@@ -36,6 +38,8 @@ public final class WorkoutRepository {
             for (var s : sessions) {
                 history.addSession(s);
             }
+        } catch (com.fasterxml.jackson.databind.exc.MismatchedInputException e) {
+            return history;
         }
         return history;
     }

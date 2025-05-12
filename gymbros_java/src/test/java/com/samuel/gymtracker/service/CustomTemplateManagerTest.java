@@ -45,7 +45,7 @@ class CustomTemplateManagerTest {
         assertEquals(5, templates.get("MyRoutine").size());
         List<Exercise> materialized = CustomTemplateManager.materialise("MyRoutine", catalog);
         assertEquals(5, materialized.size());
-        assertEquals("Test 1", materialized.getFirst().getName());
+        assertEquals("Test 1", materialized.get(0).getName());
     }
 
 

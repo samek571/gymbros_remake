@@ -43,7 +43,12 @@ public final class ViewWorkoutHistory {
             System.out.println("\n=== Workout History ===");
             for (WorkoutSession session : history.getSessions()) {
                 System.out.println("Started at: " + session.getStartTime());
-                System.out.println("Duration: " + session.getDuration());
+
+                if (session.getEndTime() == null) {
+                    System.out.println("Duration: [unknown or in-progress]");
+                } else {
+                    System.out.println("Duration: " + session.getDuration() + " seconds");
+                }
                 System.out.println("Total XP: " + session.getTotalXp());
 
                 for (SessionEntry entry : session.getEntries()) {
@@ -51,7 +56,7 @@ public final class ViewWorkoutHistory {
                             " | Reps: " + entry.getReps() +
                             " | Weight: " + entry.getWeight() +
                             " | Seconds: " + entry.getSeconds() +
-                            " | XP: " + entry.getXpEarned());
+                            " | XP: " + entry.getXp());
                 }
                 System.out.println();
             }

@@ -1,5 +1,6 @@
 package com.samuel.gymtracker.model.session;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.samuel.gymtracker.model.Exercise;
@@ -16,6 +17,7 @@ public final class SessionEntry {
     private final int seconds;
     private final double xp;
 
+
     /**
      * constructs a session entry to deserialize
      * @param exercise exercise performed
@@ -30,7 +32,7 @@ public final class SessionEntry {
             @JsonProperty("reps") int reps,
             @JsonProperty("weight") double weight,
             @JsonProperty("seconds") int seconds,
-            @JsonProperty("xp") double xp
+            @JsonProperty("xpEarned") @JsonAlias("xp")double xp
     ) {
         this.exercise = exercise;
         this.reps = reps;
@@ -83,7 +85,7 @@ public final class SessionEntry {
      * xp yield
      * @return xp earned from ex
      */
-    public double getXpEarned() { return xp; }
+    public double getXp() { return xp; }
 
     @Override
     public String toString() {

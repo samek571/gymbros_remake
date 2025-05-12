@@ -1,0 +1,22 @@
+{
+  "LOWER_BACK" : {
+    "totalReps" : 10,
+    "totalSeconds" : 234239,
+    "exercisesLogged" : 2
+  },
+  "QUADRICEPS" : {
+    "totalReps" : 10,
+    "totalSeconds" : 234239,
+    "exercisesLogged" : 2
+  },
+  "HAMSTRINGS" : {
+    "totalReps" : 10,
+    "totalSeconds" : 234239,
+    "exercisesLogged" : 2
+  },
+  "GLUTES" : {
+    "totalReps" : 10,
+    "totalSeconds" : 234239,
+    "exercisesLogged" : 2
+  }
+}

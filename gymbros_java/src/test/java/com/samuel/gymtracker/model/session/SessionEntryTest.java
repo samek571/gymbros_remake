@@ -16,7 +16,7 @@ class SessionEntryTest {
                 18.0, 0.0, 0.0);
 
         SessionEntry e = SessionEntry.of(ex, 8, 0, 0, 1.0);
-        assertEquals(144.0, e.getXpEarned(), 0.01);
+        assertEquals(144.0, e.getXp(), 0.01);
     }
 
     @Test
@@ -28,7 +28,7 @@ class SessionEntryTest {
                 0.0, 0.0, 5.0);
 
         SessionEntry e = SessionEntry.of(ex, 0, 0, 0, 1.0);
-        assertEquals(0.0, e.getXpEarned(), 0.01);
+        assertEquals(0.0, e.getXp(), 0.01);
     }
 
     @Test
@@ -40,7 +40,7 @@ class SessionEntryTest {
                 0.0, 0.0, 2.5);
 
         SessionEntry e = SessionEntry.of(ex, 0, 0, 90, 1.0);
-        assertEquals(225.0, e.getXpEarned(), 0.01);
+        assertEquals(225.0, e.getXp(), 0.01);
     }
 
     @Test
@@ -53,7 +53,7 @@ class SessionEntryTest {
 
         SessionEntry e = SessionEntry.of(ex, 10, 0, 60, 1.0);
         double expectedXp = (10 * 5.0) + (60 * 2.0);
-        assertEquals(expectedXp, e.getXpEarned(), 0.01);
+        assertEquals(expectedXp, e.getXp(), 0.01);
     }
 
     @Test

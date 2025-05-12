@@ -28,6 +28,7 @@ public final class WorkoutSession {
         this.startTime = Instant.now();
     }
 
+
     /**
      * adds new set entry to the session
      * @param entry completed ex entry
@@ -70,7 +71,7 @@ public final class WorkoutSession {
      * computes total XP earned during this session
      * @return summing XP across all logged entries
      */
-    public double getTotalXp() {return entries.stream().mapToDouble(SessionEntry::getXpEarned).sum();}
+    public double getTotalXp() {return entries.stream().mapToDouble(SessionEntry::getXp).sum();}
 
     /**
      * unmodifiable list of all set entries in particilaar session
@@ -85,6 +86,12 @@ public final class WorkoutSession {
      * @return starting time
      */
     public Instant getStartTime() {return startTime;}
+
+    /**
+     * time at which we ended
+     * @return ending time
+     */
+    public Instant getEndTime() {return endTime;}
 
     @Override
     public String toString() {

@@ -1,0 +1,26 @@
+-classpath
+'/home/samuel/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.0/jackson-databind-2.17.0.jar:/home/samuel/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.0/jackson-annotations-2.17.0.jar:/home/samuel/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.0/jackson-core-2.17.0.jar:/home/samuel/.m2/repository/net/bytebuddy/byte-buddy/1.14.9/byte-buddy-1.14.9.jar:/home/samuel/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.3/junit-jupiter-api-5.10.3.jar:/home/samuel/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/samuel/.m2/repository/org/junit/platform/junit-platform-commons/1.10.3/junit-platform-commons-1.10.3.jar:/home/samuel/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/samuel/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.17.0/jackson-datatype-jsr310-2.17.0.jar'
+-encoding
+'UTF-8'
+-overview
+'/home/samuel/Documents/_uni/4/java_zapoctak_fetching/gymbros_remake/gymbros_java/src/main/javadoc/overview.html'
+-package
+-source
+'21'
+-sourcepath
+'/home/samuel/Documents/_uni/4/java_zapoctak_fetching/gymbros_remake/gymbros_java/src/main/java:/home/samuel/Documents/_uni/4/java_zapoctak_fetching/gymbros_remake/gymbros_java/src/main/javadoc'
+-author
+-bottom
+'Copyright &#169; 2025. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/home/samuel/Documents/_uni/4/java_zapoctak_fetching/gymbros_remake/gymbros_java/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'gym_java 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'gym_java 1.0-SNAPSHOT API'
